@@ -1,0 +1,11 @@
+{
+  "api": 1,
+  "id": "world-clock",
+  "name": "World clock",
+  "version": "1.0.0",
+  "kind": "clock",
+  "description": "A clock for your preferred time zone",
+  "author": "Your name",
+  "license": "MIT",
+  "timeZone": "Europe/Berlin"
+}

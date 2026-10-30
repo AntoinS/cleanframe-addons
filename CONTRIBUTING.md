@@ -1,0 +1,1 @@
+Submit a pull request using the format and review checklist in README.md. Do not include personal account data, device addresses, private keys or proprietary assets. By contributing you confirm that you may distribute the package and identify its license. API extensions should be proposed in an issue before implementation.

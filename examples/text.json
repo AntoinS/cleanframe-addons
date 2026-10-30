@@ -1,0 +1,11 @@
+{
+  "api": 1,
+  "id": "daily-note",
+  "name": "Daily note",
+  "version": "1.0.0",
+  "kind": "text",
+  "description": "A personal note on Home",
+  "author": "Your name",
+  "license": "MIT",
+  "text": "Time for a break."
+}
