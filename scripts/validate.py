@@ -20,3 +20,29 @@ for path in list((root/'packages').rglob('*.json'))+list((root/'examples').glob(
     if item['kind']=='spotify':assert item['id']=='spotify'
     if 'timeZone' in item:ZoneInfo(item['timeZone'])
 print('Catalog, checksums and example packages validated.')
+
+# API 2 keeps all API 1 metadata complete and never mutates the legacy catalog.
+v2=json.loads((root/'catalog-v2.json').read_text())
+assert v2['api']==2 and len(v2['addons'])<=32
+native_schema=json.loads((root/'native-package.schema.json').read_text())
+native_validator=Draft7Validator(native_schema)
+catalog_schema=json.loads((root/'catalog-v2.schema.json').read_text())
+# Resolve the sole local reference without permitting schema network requests.
+catalog_schema['properties']['addons']['items']['oneOf'][0]=native_schema
+Draft7Validator(catalog_schema).validate(v2)
+v2ids=set()
+for entry in v2['addons']:
+    assert entry['id'] not in v2ids
+    v2ids.add(entry['id'])
+    if entry['kind']=='native':
+        native_validator.validate(entry)
+    else:
+        package={key:value for key,value in entry.items() if key not in ('path','sha256')}
+        validator.validate(package)
+        assert entry['path']==f"packages/{entry['id']}/{entry['version']}.json"
+        data=(root/entry['path']).read_bytes()
+        assert len(data)<=65536 and hashlib.sha256(data).hexdigest()==entry['sha256']
+        assert json.loads(data)==package
+for legacy in catalog['addons']:
+    assert legacy in v2['addons'], 'API 2 must retain the complete existing API 1 entries'
+print('API 2 catalog validated; native entries require separate signed-artifact and device acceptance.')

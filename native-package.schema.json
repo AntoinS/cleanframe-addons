@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "api",
+    "id",
+    "name",
+    "version",
+    "kind",
+    "description",
+    "author",
+    "license",
+    "packageName",
+    "serviceInterface",
+    "versionCode",
+    "minHostVersion",
+    "apkUrl",
+    "sha256",
+    "signerSha256"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "api": {
+      "const": 2
+    },
+    "id": {
+      "const": "apple-remote"
+    },
+    "kind": {
+      "const": "native"
+    },
+    "packageName": {
+      "const": "com.cleanframe.addon.appleremote"
+    },
+    "serviceInterface": {
+      "const": 1
+    },
+    "versionCode": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "minHostVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "apkUrl": {
+      "type": "string",
+      "pattern": "^https://github.com/AntoinS/cleanframe-addons/releases/download/[A-Za-z0-9][A-Za-z0-9._-]*/[A-Za-z0-9][A-Za-z0-9._-]*\\.apk$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "signerSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "permissions": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      }
+    },
+    "icon": {
+      "enum": [
+        "remote",
+        "package"
+      ]
+    }
+  }
+}

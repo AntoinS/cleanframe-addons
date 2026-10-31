@@ -1,6 +1,6 @@
 # CleanFrame Add-ons
 
-Public, reviewed widget packages for CleanFrame 0.7.0 / Add-on API 1. The launcher and Mac editor are maintained separately in a private repository.
+Public, reviewed add-ons for CleanFrame. API 1 keeps Spotify compatible with CleanFrame 0.7.0; API 2 adds the experimental iPhone Remote package for CleanFrame 0.8.0. The launcher and Mac editor are maintained separately in a private repository.
 
 On Android TV open **Settings → Add-ons → Refresh catalog**. Download or update a package, enable/disable it, or uninstall it. Spotify is migrated automatically from existing CleanFrame installations. Removing its package removes the widget and stops observation; saved Spotify credentials and appearance preferences remain until the user explicitly signs out in Spotify settings.
 
@@ -19,3 +19,7 @@ The examples are SDK fixtures, not automatically installed or advertised in the 
 ## Releases
 
 Catalog releases use Git tags `vMAJOR.MINOR.PATCH` with a GitHub Release. Individual widgets keep independent versions. Release assets include the catalog and published JSON packages. The TV reads the current reviewed catalog from `main`; package paths remain immutable.
+
+## Native add-ons (API 2)
+
+See [API-2.md](API-2.md) for separately installed Android packages, the versioned service interface, review requirements and the new `catalog-v2.json`. The legacy `catalog.json` remains unchanged. iPhone Remote 0.1.0 is available as an experimental package. Setup is integrated into CleanFrame; supported device checks and remaining limitations are documented in [its README](addons/apple-remote/README.md). Source, dependency pins and the local builder are included. Signing keys and device configuration are not.

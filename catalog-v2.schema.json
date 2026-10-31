@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "api",
+    "addons"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "api": {
+      "const": 2
+    },
+    "addons": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "native-package.schema.json"
+          },
+          {
+            "type": "object",
+            "required": [
+              "api",
+              "id",
+              "name",
+              "version",
+              "kind",
+              "description",
+              "author",
+              "license",
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "api": {
+                "const": 1
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,47}$"
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+              },
+              "kind": {
+                "enum": [
+                  "spotify",
+                  "clock",
+                  "text"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 500
+              },
+              "timeZone": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "author": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "license": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^packages/[a-z0-9-]+/[0-9]+\\.[0-9]+\\.[0-9]+\\.json$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
