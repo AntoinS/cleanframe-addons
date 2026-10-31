@@ -1,33 +1,55 @@
-# CleanFrame Add-ons
+# CleanTV Add-ons
 
-Public, reviewed add-ons for CleanFrame. API 1 keeps Spotify compatible with CleanFrame 0.7.0; API 2 adds the experimental iPhone Remote package for CleanFrame 0.8.0. The launcher and Mac editor are maintained separately in a private repository.
+**Erweiterungen für [CleanTV](https://github.com/AntoinS/CleanTV): herunterladen, einrichten und unabhängig aktualisieren.**
 
-On Android TV open **Settings → Add-ons → Refresh catalog**. Download or update a package, enable/disable it, or uninstall it. Spotify is migrated automatically from existing CleanFrame installations. Removing its package removes the widget and stops observation; saved Spotify credentials and appearance preferences remain until the user explicitly signs out in Spotify settings.
+Dieses Repository enthält den öffentlichen Paketkatalog, freigegebene Pakete, den Quellcode der nativen iPhone-Erweiterung und Beispiele für eigene Add-ons. Die Adresse `cleanframe-addons` bleibt erhalten, damit bestehende TVs weiterhin ihre Downloads erreichen.
 
-## Updates and installed packages
+## Verfügbare Erweiterungen
 
-CleanFrame 0.8.3 separates installed package status from the latest catalog entry. A newer catalog version does not disable an existing receiver or prevent its removal. Native service access and removal verify package identity and the trusted signing certificate; downloads additionally require the exact catalog version and SHA-256 checksum.
+| Add-on | Möglichkeiten | Voraussetzungen und Grenzen |
+| --- | --- | --- |
+| Spotify | Cover, Titel, Interpret, Fortschritt und Steuerung; kompakte/aufgeklappte Darstellung, Transparenz und Coverfarbe; QR-Anmeldung und Abmelden in CleanTV | Spotify-TV-App und eigenes Konto; geräteübergreifende Steuerung über eine eingerichtete Spotify Web API. Das JSON-Paket aktiviert den im Host enthaltenen Spotify-Adapter. |
+| iPhone Remote | Apple-TV-Fernbedienung im iPhone-Kontrollzentrum: Navigation, Home, Zurück, Medien, Lautstärke und unterstützte Texteingabe | Eigenständige Android-App, derzeit experimentell und am Philips geprüft. Erscheint unter dem Gerätenamen des TVs. Kein laufender Mac nötig. Kein Siri oder AirPlay-Streaming. |
 
-Available updates are marked with a blue dot. **Update all** processes installed packages sequentially; Android confirms each APK update. A cancelled or failed operation stops remaining updates. Updates retain activation, pairing and existing settings. Uninstall is different: Android removes a native add-on’s data and pairing. An older catalog never offers a downgrade.
+[Remote-Einrichtung, Architektur und Testgrenzen](addons/apple-remote/README.md) · [Releases](https://github.com/AntoinS/cleanframe-addons/releases) · [Native Add-on-API](API-2.md)
 
-The iPhone Remote 0.1.1 device-name change and reconnection without re-pairing were confirmed by the owner on 2026-10-31. Its release remains experimental with the previously documented compatibility limits.
+## Am Fernseher verwalten
 
-## Contributing a widget
+Öffne **CleanTV → Einstellungen → Add-ons**. Unter **Installiert** findest du vorhandene Erweiterungen; unter **Entdecken** die freigegebenen Pakete. Details zeigen Version, Anbieter, Freigaben und passende Aktionen.
 
-1. Copy an example from `examples/`. Choose a unique lowercase ID and a semantic version (`major.minor.patch`).
-2. API 1 supports `text` (plain text), `clock` (optional IANA `timeZone`) and the reserved `spotify` provider. Packages are JSON data, not JavaScript, HTML, native binaries or network clients. New native capabilities require a host API update. No credentials belong in a package.
-3. Supply `name`, `description`, `author`, `license`, `api`, `id`, `version`, `kind`. Metadata fields must be nonempty and at most 240 characters. Text is at most 500 characters. At most three additional widgets may be active; Spotify has its own player region.
-4. Put the immutable package at `packages/ID/VERSION.json`. Add its metadata, relative `path` and SHA-256 digest to `catalog.json`. Never replace a published version; increase its version.
-5. Open a pull request. Include a screenshot at 1080p and 720p, licensing details and a description of changes. A maintainer reviews it before merging into the downloadable catalog.
+- **Herunterladen:** Paket prüfen und installieren; Android bestätigt native APKs.
+- **Einrichten:** sichtbare Spotify- und iPhone-Einstellungen direkt in CleanTV öffnen. Android verwaltet erforderliche Systemfreigaben.
+- **Aktivieren/Deaktivieren:** die Erweiterung ein- oder ausschalten, ohne sie zu entfernen.
+- **Aktualisieren:** vorhandene Einstellungen, Aktivierung und Kopplungen erhalten.
+- **Deinstallieren:** Erweiterung entfernen. Android löscht dabei die Daten und Kopplungen einer nativen App. Beim Spotify-Widget bleiben Host-Konto und Gestaltung erhalten, bis du ausdrücklich abmeldest.
 
-The TV only downloads from this repository over HTTPS, rejects redirects and oversized payloads, checks API/identity/checksum, and atomically saves changes. Interrupted or invalid downloads keep the previous installation. A checksum protects package integrity relative to the reviewed catalog; it is not a separate publisher signature. Offline installations remain usable. The catalog supports at most 32 entries in API 1.
+Ab CleanTV 0.8.3 zeigen blaue Punkte neue Updates an. **Alle aktualisieren** verarbeitet sie nacheinander; jedes APK benötigt weiterhin Androids Bestätigung. Abbruch oder Fehler stoppt die restlichen Updates. Ein neuer Katalogeintrag deaktiviert keine installierte Version und verhindert deren Deinstallation nicht. Ein älterer Katalog bietet kein Downgrade an.
 
-The examples are SDK fixtures, not automatically installed or advertised in the catalog. Names/descriptions currently use the author's supplied language. CleanFrame management controls support German and English.
+Die Installation wird anhand des tatsächlichen Android-Pakets und der vertrauenswürdigen Signatur geprüft. Downloads verlangen zusätzlich die angekündigte Version und Prüfsumme. Offline bleiben vorhandene Pakete nutzbar.
 
-## Releases
+## iPhone Remote einrichten
 
-Catalog releases use Git tags `vMAJOR.MINOR.PATCH` with a GitHub Release. Individual widgets keep independent versions. Release assets include the catalog and published JSON packages. The TV reads the current reviewed catalog from `main`; package paths remain immutable.
+Aktiviere das Add-on in seinen CleanTV-Einstellungen. Auf dem unterstützten Philips kann die einmalige Freigabe **CleanTV · Automatische TV-Einrichtung** den Philips-Kopplungscode während der eigenen Einrichtung bestätigen. Der Zugriff ist auf dieses zeitlich begrenzte Kopplungsfenster beschränkt.
 
-## Native add-ons (API 2)
+Wähle anschließend den Gerätenamen deines TVs in der Apple-TV-Fernbedienung auf dem iPhone und bestätige die Kopplung mit dem angezeigten Code. Für Texteingabe kannst du die **CleanTV iPhone Keyboard** in Android freigeben und auswählen. Geräte lassen sich einzeln entkoppeln.
 
-See [API-2.md](API-2.md) for separately installed Android packages, the versioned service interface, review requirements and the new `catalog-v2.json`. The legacy `catalog.json` remains unchanged. iPhone Remote 0.1.0 is available as an experimental package. Setup is integrated into CleanFrame; supported device checks and remaining limitations are documented in [its README](addons/apple-remote/README.md). Source, dependency pins and the local builder are included. Signing keys and device configuration are not.
+Am Referenzgerät wurden Kopplung, Wiederverbindung, Navigation, Lautstärke, Play/Pause und Live-Texteingabe in Spotify geprüft. Weitere Apps, die vollständige Standby-/Neustartmatrix und Tiefschlaf-Aufwecken sind nicht zugesichert. App-eigene Tastaturen können die Texteingabeschnittstelle umgehen.
+
+## Eigene Add-ons entwickeln
+
+**API 1:** deklarative JSON-Pakete für Text, Uhr und den reservierten Spotify-Anbieter. Sie enthalten keinen ausführbaren JavaScript- oder HTML-Code. Beginne mit [examples](examples/) und [package.schema.json](package.schema.json). Bis zu drei zusätzliche Home-Widgets sind möglich.
+
+**API 2:** ergänzt separat installierte, signierte Android-Apps. Der Host lädt keinen fremden Code in seine WebView. Identität, Signatur und Dienstschnittstelle werden geprüft. Neue native Paketkennungen benötigen eine ausdrückliche Host-Integration und Prüfung; ein Katalogeintrag allein reicht nicht. Siehe [API-2.md](API-2.md) und [native-package.schema.json](native-package.schema.json).
+
+1. Vergib eine stabile Paketkennung und semantische Version.
+2. Verwende die Beispiele und dokumentiere Funktionen, Freigaben und Grenzen.
+3. Prüfe Deutsch/Englisch, Fernbedienungsfokus sowie 720p, 1080p und 4K.
+4. Reiche einen Pull Request mit Quellcode, Lizenzangaben, Prüfergebnissen und Screenshots ein. Erst freigegebene Pakete gelangen in den Katalog.
+
+Der Mac-Editor von CleanTV bietet eine getrennte Add-on-Simulation und lesende TV-Diagnose. Simulation ersetzt keine Geräteprüfung und wird nicht als TV-Konfiguration übertragen.
+
+## Kataloge, Releases und Herkunft
+
+`catalog.json` erhält die API-1-Kompatibilität; `catalog-v2.json` ergänzt native Pakete. TVs lesen den freigegebenen Katalog von `main`. Paketversionen, Downloadpfade und Release-Tags bleiben unveränderlich. Add-ons und Katalog haben unabhängige Versionsnummern; Android-Versioncodes steigen monoton.
+
+Die nativen Quellen, festgelegten Abhängigkeiten und ein lokaler Builder sind enthalten. Signierschlüssel, Kontodaten und private Gerätekonfiguration bleiben lokal. Lizenz- und Herkunftshinweise stehen in [LICENSE](LICENSE), den einzelnen Paketen und den [Remote-Hinweisen](addons/apple-remote/NOTICE.md). CleanTV basiert auf [CleanFrame von nthnclrk](https://github.com/nthnclrk/CleanFrame).
