@@ -4,6 +4,14 @@ Public, reviewed add-ons for CleanFrame. API 1 keeps Spotify compatible with Cle
 
 On Android TV open **Settings → Add-ons → Refresh catalog**. Download or update a package, enable/disable it, or uninstall it. Spotify is migrated automatically from existing CleanFrame installations. Removing its package removes the widget and stops observation; saved Spotify credentials and appearance preferences remain until the user explicitly signs out in Spotify settings.
 
+## Updates and installed packages
+
+CleanFrame 0.8.3 separates installed package status from the latest catalog entry. A newer catalog version does not disable an existing receiver or prevent its removal. Native service access and removal verify package identity and the trusted signing certificate; downloads additionally require the exact catalog version and SHA-256 checksum.
+
+Available updates are marked with a blue dot. **Update all** processes installed packages sequentially; Android confirms each APK update. A cancelled or failed operation stops remaining updates. Updates retain activation, pairing and existing settings. Uninstall is different: Android removes a native add-on’s data and pairing. An older catalog never offers a downgrade.
+
+The iPhone Remote 0.1.1 device-name change and reconnection without re-pairing were confirmed by the owner on 2026-10-31. Its release remains experimental with the previously documented compatibility limits.
+
 ## Contributing a widget
 
 1. Copy an example from `examples/`. Choose a unique lowercase ID and a semantic version (`major.minor.patch`).
