@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "api": 1,
   "kind": "spotify",
-  "status": "prerelease",
+  "status": "released",
   "packagePath": "packages/spotify/1.0.1.json",
   "sha256": "9514cb9e38123c0e6aa65f38984affd8268f01456d1ac15c0bf3c0fb7b7e1cdb",
   "renderer": {
@@ -29,6 +29,8 @@
       "transparency endpoints",
       "editor geometry"
     ],
-    "nativeTv": "pending"
+    "nativeTv": "passed",
+    "date": "2026-11-11",
+    "report": "https://github.com/AntoinS/CleanTV/blob/main/docs/releases/0.9.1-tv-validation.md"
   }
 }

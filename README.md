@@ -17,7 +17,7 @@ Dieses Repository enthält den öffentlichen Paketkatalog, freigegebene Pakete, 
 
 Der kompakte und der aufgeklappte Player verwenden ab **CleanTV 0.9.1** die vorbereitete Frost-Glasfläche von Home. Dunkel, Hell, Coverfarbe und der gespeicherte Transparenzwert bleiben erhalten. Auch nach Verschieben oder Vergrößern im Editor bleibt der Hintergrund ausgerichtet.
 
-Die Darstellung gehört zum CleanTV-Host. **Nur das JSON-Add-on zu aktualisieren ändert auf CleanTV 0.9.0 oder älter noch nicht den Glaseffekt.** Die passende [CleanTV 0.9.1 Vorabversion](https://github.com/AntoinS/CleanTV/releases/tag/v0.9.1) enthält den Renderer; der native TV-Bildtest steht noch aus. Einstellungen, Aktivierung und Spotify-Anmeldung werden nicht zurückgesetzt.
+Die Darstellung gehört zum CleanTV-Host. **Nur das JSON-Add-on zu aktualisieren ändert auf CleanTV 0.9.0 oder älter noch nicht den Glaseffekt.** Die passende [CleanTV 0.9.1](https://github.com/AntoinS/CleanTV/releases/tag/v0.9.1) enthält den Renderer. Der native Philips-TV-Bildtest wurde am 11. November 2026 bestanden; Darstellung und Audioausgabe wurden vom Besitzer bestätigt. Einstellungen, Aktivierung und Spotify-Anmeldung werden nicht zurückgesetzt.
 
 Der API-2-Katalog bietet 1.0.1 an. Der alte API-1-Katalog und das Paket 1.0.0 bleiben unverändert erreichbar.
 
