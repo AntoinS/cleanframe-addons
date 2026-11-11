@@ -5,13 +5,13 @@
       "api": 1,
       "id": "spotify",
       "name": "Spotify",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "kind": "spotify",
-      "description": "Spotify playback and account controls",
+      "description": "Spotify player and account controls. Frosted glass requires CleanTV 0.9.1 or newer.",
       "author": "CleanFrame",
       "license": "MIT",
-      "path": "packages/spotify/1.0.0.json",
-      "sha256": "fea1dd06487e7a0674ae477d616395d7d9bcc6c63b80bfe1a19cabc632124a3e"
+      "path": "packages/spotify/1.0.1.json",
+      "sha256": "9514cb9e38123c0e6aa65f38984affd8268f01456d1ac15c0bf3c0fb7b7e1cdb"
     },
     {
       "api": 2,

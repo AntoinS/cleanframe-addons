@@ -13,6 +13,14 @@ Dieses Repository enthält den öffentlichen Paketkatalog, freigegebene Pakete, 
 
 [Remote-Einrichtung, Architektur und Testgrenzen](addons/apple-remote/README.md) · [Releases](https://github.com/AntoinS/cleanframe-addons/releases) · [Native Add-on-API](API-2.md)
 
+## Spotify 1.0.1 · Milchglas
+
+Der kompakte und der aufgeklappte Player verwenden ab **CleanTV 0.9.1** die vorbereitete Frost-Glasfläche von Home. Dunkel, Hell, Coverfarbe und der gespeicherte Transparenzwert bleiben erhalten. Auch nach Verschieben oder Vergrößern im Editor bleibt der Hintergrund ausgerichtet.
+
+Die Darstellung gehört zum CleanTV-Host. **Nur das JSON-Add-on zu aktualisieren ändert auf CleanTV 0.9.0 oder älter noch nicht den Glaseffekt.** Die passende [CleanTV 0.9.1 Vorabversion](https://github.com/AntoinS/CleanTV/releases/tag/v0.9.1) enthält den Renderer; der native TV-Bildtest steht noch aus. Einstellungen, Aktivierung und Spotify-Anmeldung werden nicht zurückgesetzt.
+
+Der API-2-Katalog bietet 1.0.1 an. Der alte API-1-Katalog und das Paket 1.0.0 bleiben unverändert erreichbar.
+
 ## Am Fernseher verwalten
 
 Öffne **CleanTV → Einstellungen → Add-ons**. Unter **Installiert** findest du vorhandene Erweiterungen; unter **Entdecken** die freigegebenen Pakete. Details zeigen Version, Anbieter, Freigaben und passende Aktionen.

@@ -44,5 +44,8 @@ for entry in v2['addons']:
         assert len(data)<=65536 and hashlib.sha256(data).hexdigest()==entry['sha256']
         assert json.loads(data)==package
 for legacy in catalog['addons']:
-    assert legacy in v2['addons'], 'API 2 must retain the complete existing API 1 entries'
+    current=next((entry for entry in v2['addons'] if entry['id']==legacy['id']),None)
+    assert current is not None, 'API 2 must retain every legacy package identity'
+    assert (current['api'],current['kind'])==(legacy['api'],legacy['kind']), 'Legacy package API and kind must remain compatible'
+    assert tuple(map(int,current['version'].split('.')))>=tuple(map(int,legacy['version'].split('.'))), 'API 2 must not downgrade legacy packages'
 print('API 2 catalog validated; native entries require separate signed-artifact and device acceptance.')
